@@ -1,5 +1,7 @@
 import math
 
+from standard_grid import StandardGrid
+
 FALSE_EASTING = 2_000_000
 
 
@@ -29,7 +31,10 @@ def align_to_grid(easting: int, northing: int, grid_cell_size=1000) -> tuple[int
         math.floor(northing / grid_cell_size) * grid_cell_size,
     )
 
-def get_all_vertices(id: int, grid_cell_size=1000) -> tuple[tuple[int, int], tuple[int, int], tuple[int, int], tuple[int, int]]:
+
+def get_all_vertices(
+    id: int, grid_cell_size=1000
+) -> tuple[tuple[int, int], tuple[int, int], tuple[int, int], tuple[int, int]]:
     easting, northing = id_to_utm(id, grid_cell_size)
     return (
         (easting, northing),
@@ -37,3 +42,14 @@ def get_all_vertices(id: int, grid_cell_size=1000) -> tuple[tuple[int, int], tup
         (easting + grid_cell_size, northing + grid_cell_size),
         (easting, northing + grid_cell_size),
     )
+
+
+def find_grid_cell_size(id: int) -> list[int]:
+    candidates = []
+    easting, northing = id_to_utm(id)
+
+    for standard_grid_size in StandardGrid.get_sizes():
+        if easting % standard_grid_size == 0 and northing % standard_grid_size == 0:
+            candidates.append(standard_grid_size)
+
+    return candidates
