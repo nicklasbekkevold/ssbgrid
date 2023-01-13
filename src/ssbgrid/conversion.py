@@ -4,7 +4,7 @@ FALSE_EASTING = 2_000_000
 
 
 def utm_to_id(easting: int, northing: int, grid_cell_size=1000) -> int:
-    easting, northing = allign_to_grid(easting, northing, grid_cell_size)
+    easting, northing = align_to_grid(easting, northing, grid_cell_size)
     return 20_000_000_000_000 + (easting * 10_000_000) + northing
 
 
@@ -22,7 +22,7 @@ def id_to_utm(ssb_grid_id: int, grid_cell_size=1000, centroid=False) -> tuple[in
     return easting, northing
 
 
-def allign_to_grid(easting: int, northing: int, grid_cell_size=1000) -> tuple[int, int]:
+def align_to_grid(easting: int, northing: int, grid_cell_size=1000) -> tuple[int, int]:
     return (
         math.floor((easting + FALSE_EASTING) / grid_cell_size) * grid_cell_size
         - FALSE_EASTING,
