@@ -28,3 +28,12 @@ def allign_to_grid(easting: int, northing: int, grid_cell_size=1000) -> tuple[in
         - FALSE_EASTING,
         math.floor(northing / grid_cell_size) * grid_cell_size,
     )
+
+def get_all_vertices(id: int, grid_cell_size=1000) -> tuple[tuple[int, int], tuple[int, int], tuple[int, int], tuple[int, int]]:
+    easting, northing = id_to_utm(id, grid_cell_size)
+    return (
+        (easting, northing),
+        (easting + grid_cell_size, northing),
+        (easting + grid_cell_size, northing + grid_cell_size),
+        (easting, northing + grid_cell_size),
+    )
