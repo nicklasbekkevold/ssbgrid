@@ -1,6 +1,6 @@
 import math
 
-from standard_grid import StandardGrid
+from ssbgrid.standard_grid import StandardGrid
 
 FALSE_EASTING = 2_000_000
 
