@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "ssbgrid"
+homepage = "https://github.com/nicklasbekkevold/ssbgrid"
+version = "0.0.0"
+description = "Convert between SSBgrids and UTM"
+authors = [
+    "Nicklas Bekkevold <44287251+nicklasbekkevold@users.noreply.github.com>", 
+    "Magnus Schjølberg <magnus.schjolberg@gmail.com>",
+]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2.0"
+black = "^22.12.0"
+flake8 = "^6.0.0"
+isort = "^5.11.4"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.12.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
