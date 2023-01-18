@@ -12,13 +12,13 @@ def utm_to_id(easting: int, northing: int, grid_cell_size=1000) -> int:
 
 def id_to_utm(ssb_grid_id: int, grid_cell_size=1000, centroid=False) -> tuple[int, int]:
     easting = int(
-        math.floor(ssb_grid_id * 10 ** -7)
+        math.floor(ssb_grid_id * 10**-7)
         - 2 * 10**6
         + int(centroid) * grid_cell_size / 2
     )
     northing = int(
         ssb_grid_id
-        - math.floor(ssb_grid_id * 10 ** -7) * 10**7
+        - math.floor(ssb_grid_id * 10**-7) * 10**7
         + int(centroid) * grid_cell_size / 2
     )
     return easting, northing

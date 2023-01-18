@@ -1,7 +1,8 @@
-from enum import Enum
+from enum import IntEnum
+from typing import Generator
 
 
-class StandardGrid(Enum):
+class StandardGrid(IntEnum):
     SSB100M = 100
     SSB125M = 125
     SSB250M = 250
@@ -16,5 +17,5 @@ class StandardGrid(Enum):
     SSB500KM = 500_000
 
     @classmethod
-    def get_sizes(cls) -> map:
-        return map(lambda grid: grid.value, cls)
+    def get_sizes(cls) -> Generator[int, None, None]:
+        return (int(grid) for grid in cls)
