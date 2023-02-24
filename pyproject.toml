@@ -4,7 +4,7 @@ homepage = "https://github.com/nicklasbekkevold/ssbgrid"
 version = "0.0.0"
 description = "Convert between SSBgrid and UTM"
 authors = [
-    "Nicklas Bekkevold <44287251+nicklasbekkevold@users.noreply.github.com>", 
+    "Nicklas Bekkevold <44287251+nicklasbekkevold@users.noreply.github.com>",
     "Magnus Schjølberg <magnus.schjolberg@gmail.com>",
 ]
 license = "MIT"
@@ -21,6 +21,7 @@ isort = "^5.11.4"
 mypy = "^0.991"
 coverage = "^7.0.5"
 ruff = "^0.0.225"
+pre-commit = "^3.1.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
