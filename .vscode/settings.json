@@ -1,13 +1,10 @@
 {
-    "python.formatting.provider": "black",
-    "editor.rulers": [88],
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    },
-    "python.linting.enabled": true,
-    "cSpell.words": [
-        "Galdhøpiggen",
-        "ssbgrid"
-    ]
+  "python.formatting.provider": "black",
+  "editor.rulers": [88],
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "python.linting.enabled": true,
+  "cSpell.words": ["Galdhøpiggen", "ssbgrid"]
 }
