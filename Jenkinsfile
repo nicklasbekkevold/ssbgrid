@@ -10,15 +10,17 @@ pipeline {
         VIRTUAL_ENV = "${env.WORKSPACE}/.venv"
     }
 
-    stages {
-        stage('Checkout') {
-            checkout scm
-        }
+    docker {
+        image 'python:3'
+    }
 
+    stages {
         stage('Install requirements') {
             steps {
                 sh """
                     echo ${SHELL}
+                    sh 'python3 --version'
+                    sh 'python --version'
                     [ -d .venv ] && rm -rf .venv
                     #virtualenv --python=python3 .venv
                     virtualenv .venv
