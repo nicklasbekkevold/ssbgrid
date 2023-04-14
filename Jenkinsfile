@@ -4,6 +4,11 @@
  * Jenkinsfile
  */
 pipeline {
+    options {
+        timestamps()
+        timeout(time: 10, unit: 'MINUTES')
+    }
+
     agent {
         docker {
             image 'python:3.9'
