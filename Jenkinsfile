@@ -4,14 +4,14 @@
  * Jenkinsfile
  */
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3'
+        }
+    }
 
     environment {
         VIRTUAL_ENV = "${env.WORKSPACE}/.venv"
-    }
-
-    docker {
-        image 'python:3'
     }
 
     stages {
