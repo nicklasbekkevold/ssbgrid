@@ -3,7 +3,7 @@
 /**
  * Jenkinsfile
  */
- pipeline {
+pipeline {
     agent any
 
     environment {
@@ -11,16 +11,11 @@
     }
 
     stages {
-
-        /*
-        stage ('Checkout') {
-            steps {
-                checkout scm
-            }
+        stage('Checkout') {
+            checkout scm
         }
-        */
 
-        stage ('Install requirements') {
+        stage('Install requirements') {
             steps {
                 sh """
                     echo ${SHELL}
@@ -36,7 +31,7 @@
             }
         }
 
-        stage ('Check style') {
+        stage('Check style') {
             steps {
                 sh """
                     #. .venv/bin/activate
@@ -54,7 +49,7 @@
             }
         }
 
-        stage ('Unit tests') {
+        stage('Unit tests') {
             steps {
                 sh """
                     #. venv/bin/activate
@@ -64,7 +59,7 @@
             }
         }
 
-        stage ('Cleanup') {
+        stage('Cleanup') {
             steps {
                 sh 'rm -rf venv'
             }
