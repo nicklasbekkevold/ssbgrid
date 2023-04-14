@@ -18,16 +18,14 @@ pipeline {
     stages {
         stage('Install requirements') {
             steps {
-                withPythonEnv('python3.9') {
+                withPythonEnv('python') {
                     sh """
                         echo ${SHELL}
-                        sh 'python3 --version'
                         sh 'python --version'
                         [ -d .venv ] && rm -rf .venv
-                        #virtualenv --python=python3 .venv
-                        virtualenv .venv
+                        python -m venv .venv
 
-                        #. .venv/bin/activate
+                        #. .venv/Scripts/activate
                         export PATH=${VIRTUAL_ENV}/bin:${PATH}
                         pip install --upgrade pip
                         pip install -r requirements_dev.txt
@@ -38,7 +36,7 @@ pipeline {
 
         stage('Check style') {
             steps {
-                withPythonEnv('python3.9') {
+                withPythonEnv('python') {
                     sh '''
                         #. .venv/bin/activate
                         black --check .
@@ -57,11 +55,10 @@ pipeline {
 
         stage('Unit tests') {
             steps {
-                sh """
+                sh '''
                     #. venv/bin/activate
-                    export PATH=${VIRTUAL_ENV}/bin:${PATH}
                     pytest
-                """
+                '''
             }
         }
 
