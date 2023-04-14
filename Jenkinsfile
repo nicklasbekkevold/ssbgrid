@@ -21,11 +21,11 @@ pipeline {
                 withPythonEnv('python') {
                     sh """
                         echo ${SHELL}
-                        sh 'python --version'
+                        echo python --version
                         [ -d .venv ] && rm -rf .venv
                         python -m venv .venv
 
-                        #. .venv/Scripts/activate
+                        .venv/Scripts/activate
                         export PATH=${VIRTUAL_ENV}/bin:${PATH}
                         pip install --upgrade pip
                         pip install -r requirements_dev.txt
