@@ -19,15 +19,17 @@ pipeline {
         stage('Install requirements') {
             steps {
                 withPythonEnv('python') {
-                    echo ${SHELL}
-                    echo python --version
-                    [ -d .venv ] && rm -rf .venv
-                    python -m venv .venv
+                    bat """
+                        echo ${SHELL}
+                        python --version
+                        [ -d .venv ] && rm -rf .venv
+                        python -m venv .venv
 
-                    .venv/Scripts/activate
-                    export PATH=${VIRTUAL_ENV}/bin:${PATH}
-                    pip install --upgrade pip
-                    pip install -r requirements_dev.txt
+                        #. .venv/Scripts/activate
+                        export PATH=${VIRTUAL_ENV}/bin:${PATH}
+                        pip install --upgrade pip
+                        pip install -r requirements_dev.txt
+                    """
                 }
             }
         }
@@ -35,26 +37,34 @@ pipeline {
         stage('Check style') {
             steps {
                 withPythonEnv('python') {
-                    #. .venv/bin/activate
-                    black --check .
+                    bat '''
+                        #. .venv/bin/activate
+                        black --check .
+                    '''
 
-                    isort --check --profile black .
+                    bat '''
+                        isort --check --profile black .
+                    '''
 
-                    ruff check .
+                    bat '''
+                        ruff check .
+                    '''
                 }
             }
         }
 
         stage('Unit tests') {
             steps {
-                #. venv/bin/activate
-                pytest
+                sh '''
+                    #. venv/bin/activate
+                    pytest
+                '''
             }
         }
 
         stage('Cleanup') {
             steps {
-                rm -rf venv
+                sh 'rm -rf venv'
             }
         }
     }
